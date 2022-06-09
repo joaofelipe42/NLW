@@ -11,13 +11,19 @@
   --paragraph: hsl(210, 9%, 31%);
   --brand-beige: hsl(39, 100%, 97%);
   --brand-light: hsl(148, 23%, 89%);
+  --bg-ligth: hsl(180, 14%, 97%);
 
   font-size: 62.5%;
 
   --nav-height: 7.2rem;
 }
 
-html, body{
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -28,6 +34,8 @@ body {
   text-align: center;
 
   overflow: overlay;
+
+  background-color: var(--bg-ligth);
 }
 
 .wrapper {
@@ -36,28 +44,51 @@ body {
   padding-inline: 2.4rem;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
-header {
-  margin-top: calc(4.1rem + var(--nav-height));
+section {
+  padding-block: 10rem;
 }
 
-h4 {
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  margin-bottom: 1.6rem;
-}
-
-h1 {
+section header h1 {
   font-size: 3.4rem;
   color: var(--headline);
   line-height: 130%;
   margin-bottom: 2.4rem;
 }
 
-p {
+section header h2{
+  font-size: 3rem;
+  line-height: 3.9rem;
+
+  color: var(--headline);
+}
+
+section header h4{
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 150%;
+  color: var(--primary-color);
+
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+section .content p{
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--paragraph);
+}
+
+#home {
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home p {
   font-size: 1.8rem;
   line-height: 150%;
   font-weight: 400;
@@ -65,7 +96,7 @@ p {
   margin-bottom: 3.2rem;
 }
 
-button {
+#home button {
   background: var(--primary-color);
   border-radius: 4rem;
   margin-bottom: 6rem;
@@ -85,7 +116,7 @@ button {
   margin-left: auto;
 }
 
-.stats {
+#home .stats {
   width: 32.7rem;
 
   background-color: var(--brand-beige);
@@ -101,7 +132,7 @@ button {
   border-radius: 0.6rem;
 }
 
-.stat h3 {
+#home .stat h3 {
   font-size: 4.8rem;
   color: var(--headline);
   line-height: 130%;
@@ -109,21 +140,21 @@ button {
   margin-bottom: 0.4rem;
 }
 
-.stat p {
+#home .stat p {
   margin: 0;
   color: var(--primary-color);
   font-size: 1.6rem;
   line-height: 150%;
 }
 
-header img {
+#home img {
   width: 26.4rem;
   display: block;
   margin-inline: auto;
   object-position: 0 2rem;
 }
 
-header::before {
+#home::before {
   content: '';
   width: 100%;
   height: calc(108rem + var(--nav-height));
@@ -142,8 +173,9 @@ nav {
 
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100vw;
+
+  z-index: 100;
 }
 
 nav .wrapper {
@@ -154,53 +186,56 @@ nav .wrapper {
 
 nav.scroll {
   background: var(--primary-color);
-  width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path{
+nav.scroll .logo path {
   fill: white;
 }
 
-nav.scroll button path{
-  stroke: white
+nav.scroll button path {
+  stroke: white;
 }
 
-nav button{
+nav button {
   background: none;
   cursor: pointer;
 }
 
 .open-menu,
-.close-menu{
+.close-menu {
   margin: 0;
 }
 
-.close-menu{
+.close-menu {
   padding-left: 10rem;
 }
 
 .menu,
 .close-menu,
-body.menu-expanded .open-menu{
+body.menu-expanded .open-menu {
   opacity: 0;
   visibility: hidden;
 }
 
 body.menu-expanded .menu,
-body.menu-expanded .close-menu{
+body.menu-expanded .close-menu {
   opacity: 1;
   visibility: visible;
 }
 
-body.menu-expanded{
+body.menu-expanded {
   overflow: hidden;
 }
 
-body.menu-expanded > :not(nav){
-  display: none;
+body.menu-expanded > :not(nav) {
+  visibility: hidden;
 }
 
-body.menu-expanded .menu{
+.menu{
+  transform: translateY(100%);
+}
+
+body.menu-expanded .menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -210,13 +245,13 @@ body.menu-expanded .menu{
   height: 100vh;
 
   padding-top: var(--nav-height);
+
+  transition: transform 300ms;
+
+  transform: translateY(0);
 }
 
-body.menu-expanded nav{
-  position: relative;
-}
-
-.menu ul:nth-child(1){
+.menu ul:nth-child(1) {
   display: flex;
   flex-direction: column;
   gap: 4.8rem;
@@ -228,12 +263,12 @@ body.menu-expanded nav{
   line-height: 3.1rem;
 }
 
-.menu ul li a{
+.menu ul li a {
   color: white;
   text-decoration: none;
 }
 
-.menu .button{
+.menu .button {
   background: white;
   border-radius: 4rem;
   font-weight: 700;
@@ -251,7 +286,7 @@ body.menu-expanded nav{
   margin-bottom: 8rem;
 }
 
-.social-links{
+.social-links {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,10 +299,48 @@ body.menu-expanded button {
   z-index: 100;
 }
 
-body.menu-expanded .logo path{
+body.menu-expanded .logo path {
   fill: white;
 }
 
-body.menu-expanded button path{
-  stroke: white
+body.menu-expanded button path {
+  stroke: white;
+}
+
+#service h2 {
+  margin-bottom: 6rem;
+}
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services .card {
+  padding: 2.4rem;
+  text-align: left;
+
+  background: white;
+
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
+}
+
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+
+#about {
+  text-align: left;
+  background-color: var(--brand-beige);
+}
+
+#about header h2{
+  margin-bottom: 2.4rem;
+}
+
+#about .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
 }
