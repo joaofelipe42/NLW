@@ -583,13 +583,14 @@ footer .social-links {
 
     display: block;
 
-    transition: width 0.5s;
+    transition: width 0.2s;
   }
 
   nav#navigation_.scroll .menu li a::after{
     background-color: white;
   }
 
+  nav#navigation_ .menu li a.active::after,
   nav#navigation_ .menu li a:hover::after{
     padding-inline: .8rem;
     width: 100%;
